@@ -1,6 +1,6 @@
 <h1 align="center">Hi 👋, I'm Adil Ali</h1>
-<h2 align="Center">Google Form </h2>
 <h3 align="center">A passionate full Stack developer from India</h3>
+<h2 align="Center">Google Form </h2>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=adilxali&label=Profile%20views&color=0e75b6&style=flat" alt="adilxali" /> </p>
 
@@ -52,3 +52,6 @@ npm run build
 
 [1]: https://www.linkedin.com/in/adilxali/
 
+
+### About the Project
+This project developed in VueJS and TailwindCSS. It is PWA. The form data is saved in Local Storage. You find out many interesting things in this project.
