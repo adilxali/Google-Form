@@ -38,7 +38,9 @@ defineEmits(['submit'])
         </div>
       </div>
 
+    <div class="p-3 rounded-lg"  :style="{backgroundColor:formData.data.form_background_color}">
       <button type="submit" class="p-2 m-2 rounded" :style="{backgroundColor:formData.data.form_submit_button_color}">{{formData.data.submit_button_label}}</button>
+    </div>
     </form>
   </div>
   
