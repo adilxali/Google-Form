@@ -1,11 +1,12 @@
 <script setup>
-import { ref } from "vue";
+import { ref,watch } from "vue";
 import FormView from './FormView.vue';
 import BasicSelect from "@/components/BasicSelect.vue";
 import PopupDialog from "@/components/PopupDialog.vue";
 import form from "@/formData.json"
 const formData = ref(form);
 const formValues = ref({});
+const savedData = ref(JSON.parse(localStorage.getItem("formValues"))  || []);
 const currentLanguage = ref("en");
 const languages = [
   { id: "en", name: "English" },
@@ -16,9 +17,9 @@ const languages = [
   { id: "tm", name: "Tamil" },
   { id: "tl", name: "Telgu" },
 ];
+
 const isFormSubmitted = ref(false);
 const handleSubmit = (event) => {
-  //save data to localstorage
   isFormSubmitted.value = true;
   localStorage.setItem("formValues", JSON.stringify(formValues.value));
   formValues.value = {};
@@ -32,8 +33,8 @@ const closeModel = () => {
 </script>
 
 <template>
-  <PopupDialog v-if="isFormSubmitted" @close="closeModel" :alert-type="formData.data.submit_success_action" :message="formData.data.submit_success_content"/>
-  <main v-if="!isFormSubmitted"  class="relative mx-auto w-full flex-col items-center justify-center `bg-${formData.data.background_color}` pb-5" :style="{backgroundColor:formData.data.background_color}" :class="isFormSubmitted ? '' : 'overflow-hidden'">
+  <PopupDialog :saved-data="savedData" v-if="isFormSubmitted" @close="closeModel" :alert-type="formData.data.submit_success_action" :message="formData.data.submit_success_content"/>
+  <main v-if="isFormSubmitted"  class="relative mx-auto w-full flex-col items-center justify-center `bg-${formData.data.background_color}` pb-5" :style="{backgroundColor:formData.data.background_color}" :class="isFormSubmitted ? '' : 'overflow-hidden'">
 
    <div class="p-5 max-w-sm">
     <BasicSelect
