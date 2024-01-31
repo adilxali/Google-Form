@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from "vue";
 import BaseInput from "@/components/BaseInput.vue";
 import BasicSelect from "@/components/BasicSelect.vue";
 defineProps(["formData", "formValues", "currentLanguage"]);
@@ -9,9 +8,9 @@ defineEmits(['submit'])
 
 </script>
 <template>
-  <div class="mx-auto max-w-7xl w-full grid">
+  <div class="mx-auto  w-full p-5 rounded-lg">
     
-    <form @submit.prevent="$emit('submit')" class="max-w-7xl mx-auto" :style="{backgroundColor:formData.data.form_background_color}">
+    <form @submit.prevent="$emit('submit')" class="max-w-2xl p-5 mx-auto rounded" >
       <div v-for="item in formData.data.attributes" :key="item.id" class="pb-4">
         <div v-if="item.type === 'select'">
           <BasicSelect
@@ -20,6 +19,8 @@ defineEmits(['submit'])
             :field="item.options"
             v-model="formValues[item.code]"
             :required="item.is_required"
+            :style="{backgroundColor:formData.data.form_background_color}"
+            class="p-3 rounded-lg"
           />
         </div>
 
@@ -31,6 +32,8 @@ defineEmits(['submit'])
             :placeholder="item.placeholder[currentLanguage]"
             v-model.trim="formValues[item.code]"
             :required="item.is_required"
+            :style="{backgroundColor:formData.data.form_background_color}"
+            class="p-3 rounded-lg"
           />
         </div>
       </div>
